@@ -1,0 +1,85 @@
+@model GroupEventEditView
+
+@* <div class="container bg"> *@
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark topnav sticky">
+        <a class="navbar-brand" href="/">Sociallife</a>
+        <form class="form-inline my-2 mr-sm-2" id="searchbar">
+            <input id="search-input" class="form-control mr-sm-2" type="search" onkeyup="Search()" placeholder="Search group..." aria-label="Search">
+        </form>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Home <span class="sr-only">()</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Explore
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-action="NewGroup" asp-controller="Group">Create a New Group</a>
+                        <a class="dropdown-item" href="/groups">Search for Group</a>
+                        <a class="dropdown-item" href="">Search for Event Near You</a>
+                        <a class="dropdown-item" href="">About Us</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Logout" asp-controller="home" class="nav-link">Sign out</a>
+                </li> 
+            </ul>
+        </div>
+        <button class="navbar-toggler browser-default" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h4>
+            <a href="/dashboard">Welcome! @HttpContextAccessor.HttpContext.Session.GetString("UserName")</a>
+        </h4>
+    </nav>
+</div>
+
+<div class="container" style="margin-top: 100px">
+    <div class="card border-0 shadow my-5" >
+        <div class="card-body p-5">
+            <h2 class="display-4 text-center">Edit Event</h2>
+
+        <form asp-action="EditGroupEvent" asp-controller="GroupEvent" class="group-form col-xs-9" asp-route-groupId="@HttpContextAccessor.HttpContext.Session.GetInt32("GID")" asp-route-GEId="@HttpContextAccessor.HttpContext.Session.GetInt32("EID")">
+
+            <label asp-for="GroupEvent.GroupEventName"></label>
+            <span asp-validation-for="GroupEvent.GroupEventName" class="text-success"></span>
+        <input  asp-for="GroupEvent.GroupEventName" type="text" class="form-control" value="@Model.thisEvent.GroupEventName">
+
+            <label asp-for="GroupEvent.GroupEventDate"></label>
+            <span asp-validation-for="GroupEvent.GroupEventDate" class="text-success"></span>
+            <input  asp-for="GroupEvent.GroupEventDate" type="Datetime-local" class="form-control" placeholder="Date">
+
+            <label asp-for="GroupEvent.Street"></label>
+            <span asp-validation-for="GroupEvent.Street" class="text-success"></span>
+            <input  asp-for="GroupEvent.Street" type="text" class="form-control" value="@Model.thisEvent.Street">
+
+            <label asp-for="GroupEvent.City"></label>
+            <span asp-validation-for="GroupEvent.City" class="text-success"></span>
+            <input  asp-for="GroupEvent.City" type="text" class="form-control" value="@Model.thisEvent.City">
+
+            <label asp-for="GroupEvent.State"></label>
+            <span asp-validation-for="GroupEvent.State" class="text-success"></span>
+            <input  asp-for="GroupEvent.State" type="text" class="form-control" value="@Model.thisEvent.State">
+
+            <label asp-for="GroupEvent.Zip"></label>
+            <span asp-validation-for="GroupEvent.Zip" class="text-success"></span>
+            <input  asp-for="GroupEvent.Zip" type="number" class="form-control" value="@Model.thisEvent.Zip">
+
+            <label asp-for="GroupEvent.GroupEventDetails"></label>
+            <span asp-validation-for="GroupEvent.GroupEventDetails" class="text-success"></span>
+            <textarea asp-for="GroupEvent.GroupEventDetails" type="text" class="form-control"  placeholder="@Model.thisEvent.GroupEventDetails" style="height: 300px"></textarea>
+
+            <input type="submit" class="btn btn-danger pinkBtn" style="margin-top: 25px" value="Edit">
+        </form>
+      </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>

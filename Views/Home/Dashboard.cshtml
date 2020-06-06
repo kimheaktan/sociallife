@@ -1,0 +1,179 @@
+@model DashView
+@* @{
+    ViewData["Title"] = "Home";
+} *@
+
+
+@* <div class="container bg">  *@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark topnav sticky">
+        <a class="navbar-brand" href="/">Sociallife</a>
+        <form class="form-inline my-2 mr-sm-2" id="searchbar">
+            <input id="search-input" class="form-control mr-sm-2" type="search" onkeyup="Search()" placeholder="Search group..." aria-label="Search">
+        </form>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto  ">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Home <span class="sr-only">()</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Explore
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-action="NewGroup" asp-controller="Group">Create a New Group</a>
+                        <a class="dropdown-item" href="/groups">Search for Group</a>
+                        <a class="dropdown-item" href="">Search for Event Near You</a>
+                        <a class="dropdown-item" href="">About Us</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Logout" asp-controller="home" class="nav-link">Sign out</a>
+                </li> 
+            </ul>
+        </div>
+        <button class="navbar-toggler browser-default" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h4>
+            <a href="/dashboard">Welcome! @HttpContextAccessor.HttpContext.Session.GetString("UserName")</a>
+        </h4>
+    </nav>
+    @* </div> *@
+
+    <div class="container paddingUnderNav">
+    <div>
+    <h2 class="paddingTop">Your coming events</h2>
+    <table class="table table-striped shadow-lg">
+        <thead>
+            <tr class="fadedColor">
+                <th scope="col">Date and Time</th>
+                <th scope="col">Event</th>
+                <th scope="col">Host</th>
+                <th scope="col">Attendees</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rsvp in Model.RSVPsOfThisUser)
+            {
+            <tr>
+                <td>@rsvp.GroupEvent.GroupEventDate.ToString("dddd, dd MMMM yyyy")</td>
+                <td>
+                    <h6><a asp-action="ViewGroupEvent" asp-controller="GroupEvent" asp-route-GEID="@rsvp.GroupEvent.GroupEventId">@rsvp.GroupEvent.GroupEventName</a></h6>
+                </td>
+                <td>@rsvp.GroupEvent.Creator.FullName()</td>
+                <td>
+                    <a data-toggle="modal" data-target="#@rsvp.GroupEvent.GroupEventId" href="">@rsvp.GroupEvent.Participants.Count</a>
+
+                    <div class="modal" id="@rsvp.GroupEvent.GroupEventId" >
+                        <div class="modal-dialog" role="document">
+                            @* <div class="modal-content"> *@
+                                <div class="modal-body">
+
+                                <h3 class="heading">Attendees</h3>
+                                <ol>
+                                @foreach (var p in rsvp.GroupEvent.Participants)
+                                {
+                                    if(@p.GroupEvent.CreatorId == p.UserId)
+                                    {
+                                        <li class="hostColor">
+                                            @p.User.FullName() (Host)
+                                        </li>
+                                    }
+                                    else{
+
+                                        <li>
+                                            @p.User.FullName()
+                                        </li>
+                                    }
+                                }
+                                </ol>
+                                </div>
+                            @* </div> *@
+                        </div>
+                    </div> 
+
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2 class="paddingTop">Your groups</h2>
+    <table class="table table-striped shadow-lg">
+        <thead>
+            <tr class="fadedColor">
+                <th scope="col">Group</th>
+                <th scope="col">City</th>
+                <th>Members</th>
+                <th>Coordinator</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.UserGroups)
+            {
+                <tr class="">
+                    <td><h6><a asp-action="ViewGroup" asp-controller="Group" asp-route-groupId="@m.GroupId">@m.Group.GroupName</a></h6></td>
+                    <td>@m.Group.City</td>
+                    <td>
+                    <a data-toggle="modal" data-target="#@m.GroupId" href="">@m.Group.Members.Count</a>
+
+                    <div class="modal" id="@m.GroupId" >
+                        <div class="modal-dialog" role="document">
+                            @* <div class="modal-content"> *@
+                                <div class="modal-body">
+                                <h3 class="heading">Members</h3>
+                                <ol>
+                                @foreach (var u in m.Group.Members )
+                                {
+                                    if(@u.User.UserId == u.Group.CreatorId)
+                                    {
+                                        <li class="hostColor">@u.User.FullName() (Host)</li>
+                                    }
+                                    else
+                                    {
+                                        <li>@u.User.FullName()</li>
+
+                                    }
+                                }
+                                </ol>
+                                </div>
+                            @* </div> *@
+                        </div>
+                    </div>
+                    </td>
+                    <td>
+                        <p>@m.Group.Creator.FullName()</p>
+                    @* @if(g.Group.CreatorId == HttpContextAccessor.HttpContext.Session.GetInt32("UserId"))
+                    {
+                        <a asp-action="GroupEditForm" asp-controller="Group" class="btn btn-danger pinkBtn" type="button" asp-route-groupId="@g.GroupId">Edit</a>
+                        <a asp-action="DeleteGroup" asp-controller="Group" class="btn btn-danger pinkBtn" type="button" asp-route-groupId="@g.GroupId">Delete</a>
+                    }
+                    else
+                    {
+                        var member = g.Group.Members.Where(m => m.GroupId == g.GroupId).FirstOrDefault(u => u.UserId == HttpContextAccessor.HttpContext.Session.GetInt32("UserId"));
+                        if(member != null)
+                        {
+                            <a asp-action="LeaveGroup" asp-controller="Group" class="btn btn-danger pinkBtn" type="button" asp-route-groupId="@g.GroupId">Leave</a>
+                        }
+                        else
+                        {
+                            <a asp-action="JoinGroup" asp-controller="Group" class="btn btn-danger" type="button" asp-route-groupId="@g.GroupId">Join</a>
+                        } 
+                    }
+                    
+                    </td>*@
+                </tr> 
+                
+            } 
+        </tbody>
+    </table>
+
+    </div>
+</div>
+</div>
+
+
+
+
+    

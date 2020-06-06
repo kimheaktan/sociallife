@@ -1,0 +1,268 @@
+body{
+    /* background-color: rgb(44, 40, 40); */
+    font-size: 12px;
+    font-family: "Raleway", sans-serif !important;
+    color: rgb(97, 88, 88);
+    
+}
+
+.darkB{
+  background-color: rgb(52,58,64) !important;
+}
+.reg , .login{
+    color: rgb(109, 91, 91);
+
+}
+.container{
+    height: 100%;
+    width: 100%;
+}
+
+.loginContainer{
+  width: 100%;
+  float: center !important;
+  text-align: center !important;
+  padding: 0% 10% 0% 10%;
+
+}
+
+.bg{
+  /* background-color: rgb(248, 245, 245); */
+}
+
+a, p, table, form, label, li{
+  font-size: 15px;
+}
+.title{
+    font-family: cursive;
+    font-size: 40px;
+    padding-top: 82;
+    padding-left: 450;
+    color: rgb(114, 108, 108);
+}
+
+
+
+.con{
+    width: 100%;
+    max-height: 100%;
+    /* background-color: rgb(244, 247, 250); */
+}
+
+.fadedColor{
+    color: rgb(167, 157, 157);
+}
+
+/* ~~~~~to top button~~~
+ */
+ #myBtn {
+    display: none; /*Hidden by default*/
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: rgb(156, 148, 148); /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 10px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 2em; /* Increase font size */
+    opacity: 0.5;
+    font-weight: bold;
+  }
+  
+  #showC:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+  }
+
+a:hover{
+    text-decoration: none !important;
+    color: Green;
+}
+
+.longBtn{
+    padding: 0px 178px 0px 200px !important;
+    margin-top: 15px;
+}
+
+.longBtnreg{
+
+  margin-top: 15px;
+  padding: 0px 180px 0px 160px !important;
+  margin-bottom: 15px;
+  /* font-size: 14px; */
+  width: 420px;
+
+
+}
+.longBtnIn{
+    padding: 0px 180px 0px 184px !important;
+    margin-top: 15px;
+    font-size: 13px !important;
+}
+
+table{
+    box-shadow: 1ex;
+}
+
+/* <-------------cover-----------------> */
+
+.cover, .center{
+    text-align: center;
+}
+
+
+.btn{
+    padding: 0px 60px 0px 60px;
+}
+
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container{
+    /* max-width: 100%;
+    max-height: 100%; */
+    position: relative;
+    margin: auto;
+    /* background-attachment:fixed; */
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    
+}
+
+/* Caption text */
+.text {
+  position: absolute;
+  top: 220px;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+} 
+
+.padding{
+    padding-top: 5px;
+}
+
+.paddingTop{
+    padding-top: 20px;
+}
+
+.paddingJoinFree{
+    padding: 20px;
+}
+
+.welcome{
+    padding-right: 40px;
+}
+
+/* Number text (1/8 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+/* .dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+} */
+
+.active {
+  /* background-color: #717171; */
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+.slogan{
+  color: white;
+}
+.longSolgan{
+    color: white;
+    font-size: 1.8em;
+}
+
+.category{
+    background-color: rgb(246,247,248) ;  border: none;
+    border: none;
+  color: grey;
+  padding: 4px 11px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 7px;
+}
+
+/* <-----------------------cover-------------------------> */
+
+.paddingLog{
+  padding: 15px;
+}
+
+.pinkBtn{
+  padding-top: 5px;
+  background-color: rgb(218, 97, 117);
+  text-transform: capitalize !important;
+  /* color: white; */
+  max-width: 100px;
+  text-align: center;
+  padding-left: 0px !important;
+  padding-right: 0% !important;
+  width: 7em !important;
+}
+
+.sticky{
+  position: fixed;
+  /* position: absolute !important; */
+  top: 0;
+  /* width: 85%; */
+}
+
+.paddingUnderNav{
+  padding-top: 60px;
+}
+
+.mapBorder{
+  border-radius: 1em;
+
+}
+
+.hostColor{
+  color: blue;
+}

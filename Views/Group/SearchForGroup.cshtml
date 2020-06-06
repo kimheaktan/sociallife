@@ -1,0 +1,69 @@
+@model List<Group>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark topnav">
+        <h3><a class="navbar-brand" href="/">Sociallife</a></h3>
+        <form class="form-inline my-2 mr-sm-2" id="searchbar">
+            @* <input id="search-input" class="form-control mr-sm-2" type="search" onkeyup="Search()" placeholder="Search groups..." aria-label="Search"> *@
+            @* <button id="submit-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> *@
+        </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link"  asp-action="NewGroup" asp-controller="Group">Start a new group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Home <span class="sr-only">()</span></a>
+                </li> 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Explore
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/groups">Search for groups</a>
+                        <a class="dropdown-item" href="">Search for events near you</a>
+                        <a class="dropdown-item" href="">About Us</a>
+                    </div>
+                </li>
+                @{var isLoggedIn = @HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+                    if(isLoggedIn == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Sgin In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Register">Sign Up</a>
+                        </li>
+                    }
+                    if(isLoggedIn != null)
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Logout" asp-controller="home" class="nav-link">Sign out</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <button class="navbar-toggler browser-default" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h3>
+            <a class="welcome" href="/dashboard">Welcome! @HttpContextAccessor.HttpContext.Session.GetString("UserName")</a>
+        </h3>
+    </nav>
+    
+    <div class="container">
+
+    <div>
+    @* <h4 style="padd" class="paddingTop">Search for group</h4> *@
+    <input type="text" id="searchBar" onkeyup="Search()" placeholder="Keyword...">
+
+    <ul id="gList">
+        @foreach(var g in Model)
+        {
+            <li><a asp-action="ViewGroup" asp-controller="Group" asp-route-groupId="@g.GroupId">@g.GroupName</a></li>
+        }
+    </ul>
+
+</div>
+
+    
+</div>

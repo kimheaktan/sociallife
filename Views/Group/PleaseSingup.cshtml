@@ -1,0 +1,84 @@
+@model User
+@{
+    ViewData["Title"] = "Register";
+
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark topnav">
+        <h3><a class="navbar-brand" href="/">Sociallife</a></h3>
+        <form class="form-inline my-2 mr-sm-2" id="searchbar">
+            <input id="search-input" class="form-control mr-sm-2" type="search" onkeyup="Search()" placeholder="Search groups..." aria-label="Search">
+            @* <button id="submit-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> *@
+        </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link"  asp-action="NewGroup" asp-controller="Group">Start a new group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Home <span class="sr-only">()</span></a>
+                </li> 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Explore
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/groups">Search for groups</a>
+                        <a class="dropdown-item" href="">Search for events near you</a>
+                        <a class="dropdown-item" href="">About Us</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Sgin In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Register">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+        <button class="navbar-toggler browser-default" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h3>
+            <a class="welcome" href="/dashboard">Welcome! @HttpContextAccessor.HttpContext.Session.GetString("UserName")</a>
+        </h3>
+    </nav>
+
+<div class="container d-flex justify-content-center" style="width: 40%" >
+    <div class="reg card" style="margin-top: 100px ">
+        <div class="paddingTop" style="padding: 50px 15px 5px 15px">
+            <h3 class="text-center" >Please Sign up in order to create a new group.</h3>
+        </div>
+    <div class="paddingLog">
+
+    <form asp-controller="Home" asp-action="Register" >
+
+        @* <label asp-for="FirstName"></label> *@
+        <span class="text-danger font-weight-bold" asp-validation-for="FirstName"></span>
+        <input class="form-control" asp-for="FirstName" placeholder="First Name">
+
+        @* <label asp-for="LastName"></label> *@
+        <span class="text-danger font-weight-bold" asp-validation-for="LastName"></span>
+        <input class="form-control" asp-for="LastName" placeholder="Last Name">
+
+        @* <label asp-for="Email"></label> *@
+        <span class="text-danger font-weight-bold" asp-validation-for="Email"></span>
+        <input class="form-control" asp-for="Email" placeholder="Email">
+
+        @* <label asp-for="Password"></label> *@
+        <span class="text-danger font-weight-bold" asp-validation-for="Password"></span>
+        <input class="form-control" asp-for="Password" placeholder="Password">
+
+        @* <label asp-for="ConfirmPassword"></label> *@
+        <span class="text-danger font-weight-bold" asp-validation-for="ConfirmPassword"></span>
+        <input class="form-control" asp-for="ConfirmPassword" placeholder="Confirm Password">
+
+        <div class="text-center">
+            <button class="btn btn-danger longBtnreg" type="submit">Sign up</button><br>
+            <a asp-action="ViewLogin" asp-controller="Home" >Already registered? Login Here</a>
+        </div>
+
+    </form>
+</div>
+
+
