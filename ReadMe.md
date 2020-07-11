@@ -1,5 +1,4 @@
-- Built with: C# | ASP .Net Core | Bootstrap | Google Maps APIs 
-- A Web app for social gathering that is a replication of Meetup.com where users can search for groups, create and join/attend groups and events.
-- Login/Reg Validation
-- Password bcrypt encryption
+•  Built with: C# | ASP .Net Core | Responsive Design | Bootstrap | Google Maps APIs | HTML | CSS | Password Bcrypt Encryption | LINQ | JavaScript | jQuery 
+•  SocialLife is a responsive Web App for social gathering, a replication of Meetup.com where users can search, create and join/attend groups and events. Users can also view locations of events.
+
 
