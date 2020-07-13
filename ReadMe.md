@@ -1,4 +1,4 @@
-•  Built with: C# | ASP .Net Core MVC | Entity Framework Core | MySQL Database | LINQ | Password Bcrypt Encryption | Bootstrap | Google Maps APIs | HTML | CSS | JavaScript | jQuery
+•  Built with: C# | ASP .Net Core MVC | Entity Framework Core | MySQL Database | LINQ | Password Bcrypt Encryption | Bootstrap | Google Maps APIs | HTML | CSS | JavaScript | jQuery <br>
 
 • Login/Reg Validation 
 
